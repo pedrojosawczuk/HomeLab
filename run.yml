@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  become: yes
+
+  tasks:
+    # Base Configuration
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/essential.yml
+    - import_tasks: tasks/docker.yml
+    #- import_tasks: tasks/podman.yml
+    # Deploy Essential Containers
+    - import_tasks: containers/deploy-homer.yml
+    - import_tasks: containers/deploy-duplicati.yml
+    - import_tasks: containers/deploy-syncthing.yml
+    - import_tasks: containers/deploy-vaultwarden.yml
+    # Deploy Security
+    - import_tasks: containers/deploy-endlessh.yml

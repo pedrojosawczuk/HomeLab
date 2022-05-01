@@ -1,0 +1,26 @@
+- name: Disable SSH Password Auth
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^#PasswordAuthentication yes"
+    line: "PasswordAuthentication no"
+  register: sshd_config
+
+- name: Change SSH Port from 22 to 2200
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^#Port 22"
+    line: "Port 2222"
+  register: sshd_config
+
+- name: Disable SSH Root Auth
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^#PermitRootLogin yes"
+    line: "PermitRootLogin no"
+  register: sshd_config
+
+- name: Restart SSH Daemon
+  service:
+    name: sshd
+    state: restarted
+  when: sshd_config.changed

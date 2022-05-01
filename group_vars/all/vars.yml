@@ -1,0 +1,14 @@
+username: pedrojosawczuk
+
+guid: "1000"
+timezone: "America/Sao_Paulo"
+
+packages:
+  - nano
+  - htop
+  - openssh-server
+
+config_folder: "/media/Archives/pedrojosawczuk/.selfhosted"
+gdrivepath: "/mnt/d/pedrojosawczuk"
+home_folder: "/mnt/d/pedrojosawczuk"
+media_folder: "/media/Archives/media"

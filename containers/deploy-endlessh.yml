@@ -1,0 +1,20 @@
+# Deploy Endlessh
+# --
+- name: Deploy Endlessh
+  community.docker.docker_container:
+    name: endlessh
+    image: "lscr.io/linuxserver/endlessh"
+    env:
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+      #"MSDELAY": "10000" #optional
+      #"MAXLINES": "32" #optional
+      #"MAXCLIENTS": "4096" #optional
+      #"LOGFILE": "false" #optional
+      #"BINDFAMILY" #optional
+    volumes:
+      - "{{ config_folder }}/.endlessh:/config"
+    ports:
+      - "22:2222"
+    restart_policy: unless-stopped
