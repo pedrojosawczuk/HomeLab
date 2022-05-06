@@ -1,5 +1,5 @@
-# Deploy Vaultwarden
-# --
+# Deploy Duplicati
+# ----------------
 - name: Deploy Duplicati
   community.docker.docker_container:
     name: duplicati

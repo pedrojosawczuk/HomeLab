@@ -1,5 +1,5 @@
 # Deploy Syncthing
-# --
+# ----------------
 - name: Deploy Syncthing
   community.docker.docker_container:
     name: syncthing

@@ -6,9 +6,9 @@
 
   tasks:
     # Base Configuration
-    - import_tasks: tasks/ssh.yml
+    #- import_tasks: tasks/ssh.yml
     - import_tasks: tasks/essential.yml
-    - import_tasks: tasks/docker.yml
+    #- import_tasks: tasks/docker.yml
     #- import_tasks: tasks/podman.yml
     # Deploy Essential Containers
     - import_tasks: containers/deploy-homer.yml

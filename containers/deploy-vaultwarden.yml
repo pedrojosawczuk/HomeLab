@@ -1,5 +1,5 @@
 # Deploy Vaultwarden
-# --
+# ------------------
 - name: Deploy Vaultwarden
   community.docker.docker_container:
     name: vaultwarden
