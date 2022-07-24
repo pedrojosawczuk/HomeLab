@@ -3,17 +3,18 @@
 - name: Deploy Duplicati
   community.docker.docker_container:
     name: duplicati
-    image: "lscr.io/linuxserver/duplicati:2.0.6"
+    image: 'lscr.io/linuxserver/duplicati:2.0.6'
     env:
-      "PUID": "{{ guid }}"
-      "PGID": "{{ guid }}"
-      "TZ": "{{ timezone }}"
-    volumes:
-      - "{{ config_folder }}/.duplicati:/config"
-      - "{{ config_folder }}:/source/selfhosted"
-      - "{{ gdrivepath }}/.googledrive:/source/drive"
-      - "{{ home_folder }}:/source/homefolder"
-      - "{{ media_folder }}/backups:/backups"
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
     ports:
-      - "8200:8200"
+      - '8200:8200'
+    volumes:
+      - '{{ config_folder }}/.duplicati:/config'
+      - '{{ config_folder }}:/source/selfhosted'
+      - '{{ home_folder_linux }}/Nextcloud/pedrojosawczuk/files:/source/nextcloud'
+      - '{{ home_folder }}:/source/homefolder'
+      - '{{ media_folder }}/backups:/backups'
+    state: started
     restart_policy: unless-stopped

@@ -3,27 +3,27 @@
 - name: Deploy Syncthing
   community.docker.docker_container:
     name: syncthing
-    image: "lscr.io/linuxserver/syncthing"
+    image: 'lscr.io/linuxserver/syncthing'
     hostname: HomeServer
     env:
-      "PUID": "{{ guid }}"
-      "PGID": "{{ guid }}"
-      "TZ": "{{ timezone }}"
-    volumes:
-      - "{{ config_folder }}/.syncthing:/config"
-      - "{{ home_folder }}/.backups:/data/.backups"
-      - "{{ home_folder }}/.backups/.qksms:/data/.qksms"
-      - "{{ home_folder }}/.backups/.syncthing/.phone:/data/.syncthing-phone"
-      - "{{ home_folder }}/.oculta:/data/.oculta"
-      - "{{ home_folder }}/Music:/data/Music"
-      - "{{ home_folder }}/Videos:/data/Videos"
-      - "{{ home_folder }}/Downloads:/data/Downloads"
-      - "{{ home_folder }}/Documents:/data/Documents"
-      - "{{ home_folder }}/Pictures:/data/Pictures"
-      - "{{ home_folder }}/Pictures/Camera:/data/Camera"
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
     ports:
-      - "8384:8384"
-      - "22000:22000/tcp"
-      - "22000:22000/udp"
-      - "21027:21027/udp"
+      - '8384:8384'
+      - '22000:22000/tcp'
+      - '22000:22000/udp'
+      - '21027:21027/udp'
+    volumes:
+      - '{{ config_folder }}/.syncthing:/config'
+      - '{{ home_folder }}/.backups:/data/.backups'
+      - '{{ home_folder }}/.backups/.qksms:/data/.qksms'
+      - '{{ home_folder }}/.backups/.syncthing/.phone:/data/.syncthing-phone'
+      - '{{ home_folder }}/.oculta:/data/.oculta'
+      - '{{ home_folder }}/Music:/data/Music'
+      - '{{ home_folder }}/Videos:/data/Videos'
+      - '{{ home_folder }}/Downloads:/data/Downloads'
+      - '{{ home_folder }}/Documents:/data/Documents'
+      - '{{ home_folder }}/Pictures:/data/Pictures'
+      - '{{ home_folder }}/Pictures/Camera:/data/Camera'
     restart_policy: unless-stopped

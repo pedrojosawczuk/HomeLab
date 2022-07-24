@@ -5,10 +5,14 @@
 
 - name: Install Essential Packages
   package:
-    name: "{{ packages }}"
-    state: latest
+    name: '{{ package }}'
+    state: present
+  loop:
+    - neovim
+    - htop
+    - openssh-server
 
-- name: Enable Passwordless Sudo for "{{ username }}"
+- name: Enable Passwordless Sudo for {{ username }}
   lineinfile:
     dest: /etc/sudoers
     regexp: "^%wheel"

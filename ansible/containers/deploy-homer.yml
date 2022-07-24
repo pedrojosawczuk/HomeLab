@@ -3,13 +3,15 @@
 - name: Deploy Homer
   community.docker.docker_container:
     name: homer
-    image: "docker.io/b4bz/homer"
+    image: 'docker.io/b4bz/homer'
     env:
-      "PUID": "{{ guid }}"
-      "PGID": "{{ guid }}"
-      "TZ": "{{ timezone }}"
-    volumes:
-      - "{{ config_folder }}/.homer:/www/assets"
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
     ports:
-      - "8080:8080"
+      - '8080:8080'
+    volumes:
+      - '{{ config_folder }}/.homer:/www/assets'
+'
+    state: started
     restart_policy: unless-stopped

@@ -3,17 +3,18 @@
 - name: Deploy Vaultwarden
   community.docker.docker_container:
     name: vaultwarden
-    image: "docker.io/vaultwarden/server"
+    image: 'docker.io/vaultwarden/server'
     env:
-      "PUID": "{{ guid }}"
-      "PGID": "{{ guid }}"
-      "TZ": "{{ timezone }}"
-      "SIGNUPS_ALLOWED": "false"
-      "INVITATIONS_ALLOWED": "false"
-      "WEBSOCKET_ENABLED": "true"
-    volumes:
-      - "{{ config_folder }}/.vaultwarden:/data"
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
+      'SIGNUPS_ALLOWED': 'false'
+      'INVITATIONS_ALLOWED': 'false'
+      'WEBSOCKET_ENABLED': 'true'
     ports:
-      - "8181:80"
-      - "3012:3012"
+      - '8181:80'
+      - '3012:3012'
+    volumes:
+      - '{{ config_folder }}/.vaultwarden:/data'
+    state: started
     restart_policy: unless-stopped
