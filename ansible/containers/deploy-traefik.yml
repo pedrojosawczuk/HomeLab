@@ -1,0 +1,20 @@
+# Deploy Traefik
+# --
+- name: Deploy Traefik
+  community.docker.docker_container:
+    name: traefik
+    image: 'docker.io/traefik'
+    env:
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8888:8080'  # Don't do this in production!
+    volumes:
+      - '{{ config_folder }}/.traefik:/etc/traefik'
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    state: started
+    restart_policy: unless-stopped
