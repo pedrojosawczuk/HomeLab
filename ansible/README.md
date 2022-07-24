@@ -1,7 +1,6 @@
 <p align="center">
-  <h1 align="center">HomeServer - Ansible
-  <img alt="Windows 10" src="https://external-content.duckduckgo.com/ip3/docs.ansible.com.ico"/></h1>
-  <h3 align="center">Trying to build my own local solutions for my home server. 👨‍💻</h3>
+  <h1 align="center">HomeLab - Ansible</h1>
+  <h3 align="center">Trying to build my own local solutions for my home lab. 👨‍💻</h3>
 </p>
 
 Command I use to run my ansible playbook
