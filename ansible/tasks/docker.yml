@@ -6,38 +6,40 @@
       - curl 
       - gnupg-agent
       - software-properties-common
+    state: latest
     update_cache: yes
 
 - name: Add Docker's GPG Key for Ubuntu from official site
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
 
 - name: Verify GPG Key with the fingerprint
   apt_key:
     id: 0EBFCD88
 
-- name: Configure Docker for Ubuntu Stable Repository
+- name: Add Docker Repository for Ubuntu Focal Stable
   apt_repository:
     repo: deb https://download.docker.com/linux/ubuntu focal stable
-    update_cache: yes
+    state: present
 
-- name: Install Docker-Ce
+- name: Install Docker
   apt:
     name: 
       - docker-ce
       - docker-ce-cli
       - containerd.io
-    update_cache: yes
+    state: latest
 
 - name: Update Packages (Debian-Based)
   apt:
     update_cache: yes
     upgrade: yes
 
-- name: Add "{{ username }}" User to "docker" Group
+- name: Add {{ username }} User to docker Group
   user:
-    name: "{{ username }}"
-    group: "docker"
+    name: '{{ username }}'
+    group: docker
     append: yes
 
   # Installs Docker SDK
@@ -45,7 +47,10 @@
   # 
 - name: install python package manager
   apt:
-    name: python3-pip
+    name:
+      - python3-pip
+      - python3-docker
+    state: latest
 
 - name: install python sdk
   become_user: "{{ lookup('env','USER') }}"
@@ -53,9 +58,10 @@
     name:
       - docker
       - docker-compose
+    state: latest
 
 - name: Install docker-compose from official github repo
   get_url:
-    url : https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64
+    url : https://github.com/docker/compose/releases/download/v2.7.0/docker-compose-linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: 'u+x,g+x'
