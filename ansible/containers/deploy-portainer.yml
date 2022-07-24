@@ -1,0 +1,18 @@
+# Deploy Portainer
+# --
+- name: Deploy Portainer
+  community.docker.docker_container:
+    name: portainer
+    image: 'docker.io/portainer/portainer-ce'
+    env:
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
+    ports:
+      - '9000:9000'
+      - '8000:8000'
+    volumes:
+      - '{{ config_folder }}/.portainer:/data'
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    state: started
+    restart_policy: unless-stopped
