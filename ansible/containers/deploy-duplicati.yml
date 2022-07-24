@@ -8,13 +8,25 @@
       'PUID': '{{ guid }}'
       'PGID': '{{ guid }}'
       'TZ': '{{ timezone }}'
-    ports:
-      - '8200:8200'
     volumes:
       - '{{ config_folder }}/.duplicati:/config'
       - '{{ config_folder }}:/source/selfhosted'
       - '{{ home_folder_linux }}/Nextcloud/pedrojosawczuk/files:/source/nextcloud'
       - '{{ home_folder }}:/source/homefolder'
       - '{{ media_folder }}/backups:/backups'
+    networks:
+      - name: '{{ traefik_network }}'
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.duplicati.entrypoints: 'http'
+      traefik.http.routers.duplicati.rule: 'Host(`duplicati.docker.localhost`)'
+      traefik.http.middlewares.duplicati-https-redirect.redirectscheme.scheme: 'https'
+      traefik.http.routers.duplicati.middlewares: 'duplicati-https-redirect'
+      traefik.http.routers.duplicati-secure.entrypoints: 'https'
+      traefik.http.routers.duplicati-secure.rule: 'Host(`duplicati.docker.localhost`)'
+      traefik.http.routers.duplicati-secure.tls: 'true'
+      traefik.http.routers.duplicati-secure.service: 'duplicati'
+      traefik.http.services.duplicati.loadbalancer.server.port: '8200'
+      traefik.docker.network: '{{ traefik_network }}'
     state: started
     restart_policy: unless-stopped

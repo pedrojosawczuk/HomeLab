@@ -9,10 +9,23 @@
       'PGID': '{{ guid }}'
       'TZ': '{{ timezone }}'
     ports:
-      - '9000:9000'
       - '8000:8000'
     volumes:
       - '{{ config_folder }}/.portainer:/data'
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - name: '{{ traefik_network }}'
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.portainer.entrypoints: 'http'
+      traefik.http.routers.portainer.rule: 'Host(`portainer.docker.localhost`)'
+      traefik.http.middlewares.portainer-https-redirect.redirectscheme.scheme: 'https'
+      traefik.http.routers.portainer.middlewares: 'portainer-https-redirect'
+      traefik.http.routers.portainer-secure.entrypoints: 'https'
+      traefik.http.routers.portainer-secure.rule: 'Host(`portainer.docker.localhost`)'
+      traefik.http.routers.portainer-secure.tls: 'true'
+      traefik.http.routers.portainer-secure.service: 'portainer'
+      traefik.http.services.portainer.loadbalancer.server.port: '9000'
+      traefik.docker.network: '{{ traefik_network }}'
     state: started
     restart_policy: unless-stopped

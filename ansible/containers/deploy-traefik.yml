@@ -11,10 +11,23 @@
     ports:
       - '80:80'
       - '443:443'
-      - '8888:8080'  # Don't do this in production!
     volumes:
       - '{{ config_folder }}/.traefik:/etc/traefik'
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - name: '{{ traefik_network }}'
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.traefik.entrypoints: 'http'
+      traefik.http.routers.traefik.rule: 'Host(`traefik.docker.localhost`)'
+      traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme: 'https'
+      traefik.http.routers.traefik.middlewares: 'traefik-https-redirect'
+      traefik.http.routers.traefik-secure.entrypoints: 'https'
+      traefik.http.routers.traefik-secure.rule: 'Host(`traefik.docker.localhost`)'
+      traefik.http.routers.traefik-secure.tls: 'true'
+      traefik.http.routers.traefik-secure.service: 'traefik'
+      traefik.http.services.traefik.loadbalancer.server.port: '8080'
+      traefik.docker.network: '{{ traefik_network }}'
     state: started
     restart_policy: unless-stopped
