@@ -1,0 +1,14 @@
+# Remove Containeirs
+# --
+- name: Remove Containers
+  community.docker.docker_container:
+    name: '{{ item }}'
+    state: absent
+  loop:
+    - endlessh
+    - traefik
+    - homer
+    - portainer
+    - syncthing
+    - vaultwarden
+    - duplicati

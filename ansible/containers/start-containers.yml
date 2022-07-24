@@ -1,0 +1,14 @@
+# Start Containeirs
+# --
+- name: Start Containers
+  community.docker.docker_container:
+    name: '{{ item }}'
+    state: started
+  loop:
+    - endlessh
+    - traefik
+    - homer
+    - portainer
+    - syncthing
+    - vaultwarden
+    - duplicati

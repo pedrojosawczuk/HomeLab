@@ -1,0 +1,14 @@
+# Stop Containeirs
+# --
+- name: Stop Containers
+  community.docker.docker_container:
+    name: '{{ item }}'
+    state: stopped
+  loop:
+    - endlessh
+    - traefik
+    - homer
+    - portainer
+    - syncthing
+    - vaultwarden
+    - duplicati
