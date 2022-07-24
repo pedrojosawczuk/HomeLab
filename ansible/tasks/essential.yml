@@ -5,12 +5,8 @@
 
 - name: Install Essential Packages
   package:
-    name: '{{ package }}'
+    name: '{{ list_of_packages }}'
     state: present
-  loop:
-    - neovim
-    - htop
-    - openssh-server
 
 - name: Enable Passwordless Sudo for {{ username }}
   lineinfile:

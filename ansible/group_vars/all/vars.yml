@@ -3,6 +3,11 @@ username: pedrojosawczuk
 guid: '1000'
 timezone: 'America/Sao_Paulo'
 
+list_of_packages:
+  - neovim
+  - htop
+  - openssh-server
+
 config_folder: '/media/Archives/sawczukserver/.selfhosted'
 home_folder: '/mnt/d/pedrojosawczuk'
 home_folder_linux: '/media/Archives/sawczukserver'
