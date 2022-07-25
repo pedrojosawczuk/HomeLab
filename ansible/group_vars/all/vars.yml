@@ -10,7 +10,7 @@ list_of_packages:
 
 traefik_network: 'proxy'
 
-config_folder: '/media/Archives/sawczukserver/.selfhosted'
+config_folder: '/media/Archives/sawczukserver/selfhosted'
 home_folder: '/mnt/d/pedrojosawczuk'
 home_folder_linux: '/media/Archives/sawczukserver'
 media_folder: '/media/Archives/media'

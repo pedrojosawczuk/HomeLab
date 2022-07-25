@@ -9,7 +9,7 @@
       'PGID': '{{ guid }}'
       'TZ': '{{ timezone }}'
     volumes:
-      - '{{ config_folder }}/.duplicati:/config'
+      - '{{ config_folder }}/duplicati:/config'
       - '{{ config_folder }}:/source/selfhosted'
       - '{{ home_folder_linux }}/Nextcloud/pedrojosawczuk/files:/source/nextcloud'
       - '{{ home_folder }}:/source/homefolder'

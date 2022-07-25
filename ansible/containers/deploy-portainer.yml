@@ -11,7 +11,7 @@
     ports:
       - '8000:8000'
     volumes:
-      - '{{ config_folder }}/.portainer:/data'
+      - '{{ config_folder }}/portainer:/data'
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - name: '{{ traefik_network }}'
