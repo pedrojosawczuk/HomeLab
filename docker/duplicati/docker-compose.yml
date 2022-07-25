@@ -14,7 +14,7 @@ services:
     networks:
       - proxy
     volumes:
-      - /home/username/dockerpersisvol/traefik:/etc/traefik:ro
+      - /home/username/selfhosted/traefik:/etc/traefik:ro
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
