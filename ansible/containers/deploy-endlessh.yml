@@ -17,5 +17,5 @@
       - '{{ config_folder }}/endlessh:/config'
     ports:
       - '22:2222'
-    state: started
+    state: present
     restart_policy: unless-stopped

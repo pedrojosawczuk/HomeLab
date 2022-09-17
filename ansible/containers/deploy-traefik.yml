@@ -29,5 +29,5 @@
       traefik.http.routers.traefik-secure.service: 'traefik'
       traefik.http.services.traefik.loadbalancer.server.port: '8080'
       traefik.docker.network: '{{ traefik_network }}'
-    state: started
+    state: present
     restart_policy: unless-stopped

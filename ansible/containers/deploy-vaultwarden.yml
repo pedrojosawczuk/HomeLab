@@ -30,5 +30,5 @@
       traefik.http.routers.vaultwarden-secure.service: 'vaultwarden'
       traefik.http.services.vaultwarden.loadbalancer.server.port: '80'
       traefik.docker.network: '{{ traefik_network }}'
-    state: started
+    state: present
     restart_policy: unless-stopped

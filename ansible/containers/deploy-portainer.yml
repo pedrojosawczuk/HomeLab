@@ -27,5 +27,5 @@
       traefik.http.routers.portainer-secure.service: 'portainer'
       traefik.http.services.portainer.loadbalancer.server.port: '9000'
       traefik.docker.network: '{{ traefik_network }}'
-    state: started
+    state: present
     restart_policy: unless-stopped
