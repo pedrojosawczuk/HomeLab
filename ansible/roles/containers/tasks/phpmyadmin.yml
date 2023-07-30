@@ -1,0 +1,31 @@
+# Deploy phpMyAdmin
+# ----------------
+- name: Deploy phpMyAdmin
+  community.docker.docker_container:
+    name: phpmyadmin
+    image: 'lscr.io/linuxserver/phpmyadmin'
+    env:
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
+      'PMA_HOST': 'mariadb'
+      'MYSQL_HOST': 'mariadb'
+      'MYSQL_ROOT_PASSWORD': 'toor'
+    volumes:
+      - '{{ config_folder }}/phpmyadmin:/config'
+    networks:
+      - name: '{{ traefik_network }}'
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.phpmyadmin.entrypoints: 'http'
+      traefik.http.routers.phpmyadmin.rule: 'Host(`phpmyadmin.docker.localhost`)'
+      traefik.http.middlewares.phpmyadmin-https-redirect.redirectscheme.scheme: 'https'
+      traefik.http.routers.phpmyadmin.middlewares: 'phpmyadmin-https-redirect'
+      traefik.http.routers.phpmyadmin-secure.entrypoints: 'https'
+      traefik.http.routers.phpmyadmin-secure.rule: 'Host(`phpmyadmin.docker.localhost`)'
+      traefik.http.routers.phpmyadmin-secure.tls: 'true'
+      traefik.http.routers.phpmyadmin-secure.service: 'phpmyadmin'
+      traefik.http.services.phpmyadmin.loadbalancer.server.port: '80'
+      traefik.docker.network: '{{ traefik_network }}'
+    state: started
+    restart_policy: unless-stopped

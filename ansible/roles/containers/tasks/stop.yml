@@ -5,10 +5,12 @@
     name: '{{ item }}'
     state: stopped
   loop:
-    - endlessh
+    #- endlessh
     - traefik
-    - homer
+    - homepage
+    #- homer
     - portainer
+    #- watchtower
     - syncthing
     - vaultwarden
-    - duplicati
+    #- duplicati

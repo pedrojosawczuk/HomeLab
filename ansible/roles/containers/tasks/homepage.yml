@@ -1,0 +1,29 @@
+# Deploy Homepage
+# ------------
+- name: Deploy Homepage
+  community.docker.docker_container:
+    name: homepage
+    image: 'ghcr.io/benphelps/homepage'
+    env:
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
+    volumes:
+      - '{{ config_folder }}/homepage:/app/config'
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - name: '{{ traefik_network }}'
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.home.entrypoints: 'http'
+      traefik.http.routers.home.rule: 'Host(`home.docker.localhost`)'
+      traefik.http.middlewares.home-https-redirect.redirectscheme.scheme: 'https'
+      traefik.http.routers.home.middlewares: 'home-https-redirect'
+      traefik.http.routers.home-secure.entrypoints: 'https'
+      traefik.http.routers.home-secure.rule: 'Host(`home.docker.localhost`)'
+      traefik.http.routers.home-secure.tls: 'true'
+      traefik.http.routers.home-secure.service: 'home'
+      traefik.http.services.home.loadbalancer.server.port: '3000'
+      traefik.docker.network: '{{ traefik_network }}'
+    state: present
+    restart_policy: unless-stopped

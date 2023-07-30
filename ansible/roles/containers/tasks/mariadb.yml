@@ -1,0 +1,18 @@
+# Deploy MariaDB
+# ----------------
+- name: Deploy MariaDB
+  community.docker.docker_container:
+    name: mariadb
+    image: 'lscr.io/linuxserver/mariadb'
+    env:
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
+      'MYSQL_DATABASE': 'finances'
+      'MYSQL_ROOT_PASSWORD': 'toor'
+    volumes:
+      - '{{ config_folder }}/mariadb:/config'
+    ports:
+      - '3306':'3306'
+    state: started
+    restart_policy: unless-stopped

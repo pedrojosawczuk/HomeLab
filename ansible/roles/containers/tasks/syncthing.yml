@@ -15,9 +15,7 @@
       - '21027:21027/udp'
     volumes:
       - '{{ config_folder }}/syncthing:/config'
-      - '{{ home_folder }}/.backups:/data/.backups'
-      - '{{ home_folder }}/.backups/.qksms:/data/.qksms'
-      - '{{ home_folder }}/.backups/.syncthing/.phone:/data/.syncthing-phone'
+      - '{{ home_folder }}/backups:/data/backups'
       - '{{ home_folder }}/.oculta:/data/.oculta'
       - '{{ home_folder }}/Music:/data/Music'
       - '{{ home_folder }}/Videos:/data/Videos'

@@ -1,0 +1,42 @@
+# Deploy Nextcloud
+# ----------------
+- name: Deploy Nextcloud (1/3) - Create '{{ nextcloud_network }}' Network
+  community.docker.docker_network:
+    name: '{{ nextcloud_network }}'
+
+- name: Deploy Nextcloud (2/3) - Deploy Nextcloud
+  community.docker.docker_container:
+    name: nextcloud
+    image: 'lscr.io/linuxserver/nextcloud'
+    env:
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
+    volumes:
+      - '{{ config_folder }}/nextcloud/.config:/config'
+      - '{{ home_folder_linux }}/Nextcloud:/data'
+    ports:
+      - '443:443'
+    networks:
+      - name: '{{ nextcloud_network }}'
+    restart_policy: unless-stopped
+
+- name: Deploy Nextcloud (3/3) - Deploy MariaDB
+  community.docker.docker_container:
+    name: nextclouddb
+    image: 'lscr.io/linuxserver/mariadb'
+    env:
+      'PUID': '{{ guid }}'
+      'PGID': '{{ guid }}'
+      'TZ': '{{ timezone }}'
+      'MYSQL_ROOT_PASSWORD': '{{ ROOT_ACCESS_PASSWORD }}' # MariaDB 
+      'MYSQL_DATABASE': '{{ USER_DB_NAME }}'
+      'MYSQL_USER': '{{ MYSQL_USER }}'
+      'MYSQL_PASSWORD': '{{ DATABASE_PASSWORD }}'
+    volumes:
+      - '{{ config_folder }}/.nextcloud/.db:/config'
+    ports:
+      - '3306:3306'
+    networks:
+      - name: '{{ nextcloud_network }}'
+    restart_policy: unless-stopped

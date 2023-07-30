@@ -1,0 +1,21 @@
+# Remove All Docker Containeirs
+# --
+- name: Remove Docker Images
+  community.docker.docker_image:
+    name: '{{ item }}'
+    state: absent
+  loop:
+    - docker.io/traefik:latest
+    - ghcr.io/benphelps/homepage:latest
+    - docker.io/portainer/portainer-ce:latest
+    - lscr.io/linuxserver/syncthing:latest
+    - docker.io/vaultwarden/server:latest
+#    #- endlessh
+#    - traefik
+#    - homepage
+#    #- homer
+#    - portainer
+#    #- watchtower
+#    - syncthing
+#    - vaultwarden
+#    #- duplicati

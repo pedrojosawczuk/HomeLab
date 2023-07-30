@@ -1,0 +1,26 @@
+---
+# Stop All Docker Containers
+- include_tasks: stop.yml
+
+# Remove All Docker Containers
+- include_tasks: remove.yml
+
+# Remove All Docker Images
+- include_tasks: remove-images.yml
+
+# Deploy Security Containers (Docker)
+- include_tasks: network-traefik.yml
+- include_tasks: traefik.yml
+
+# Deploy Essential Containers (Docker)
+- include_tasks: homepage.yml
+- include_tasks: vaultwarden.yml
+- include_tasks: portainer.yml
+- include_tasks: syncthing.yml
+#- include_tasks: endlessh.yml
+#- include_tasks: homer.yml
+#- include_tasks: duplicati.yml
+#- include_tasks: watchtower.yml
+
+# Start All Docker Containers
+- include_tasks: start.yml
