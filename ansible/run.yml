@@ -4,26 +4,8 @@
   gather_facts: false
   become: yes
 
-  tasks:
-    # Base Configuration
-    - import_tasks: tasks/ssh.yml
-    - import_tasks: tasks/essential.yml
-
-    - import_tasks: tasks/docker.yml
-    # Start All Docker Containers
-    - import_tasks: containers/start-containers.yml
-    # Stop All Docker Containers
-    - import_tasks: containers/stop-containers.yml
-    # Remove All Docker Containers
-    - import_tasks: containers/remove-containers.yml
-
-    # Deploy Security (Docker)
-    - import_tasks: containers/deploy-endlessh.yml
-    - import_tasks: containers/deploy-traefik_network.yml
-    - import_tasks: containers/deploy-traefik.yml
-    # Deploy Essential Containers (Docker)
-    - import_tasks: containers/deploy-homer.yml
-    - import_tasks: containers/deploy-vaultwarden.yml
-    - import_tasks: containers/deploy-portainer.yml
-    - import_tasks: containers/deploy-duplicati.yml
-    - import_tasks: containers/deploy-syncthing.yml
+  roles:
+    #- role: system
+    #- role: pip
+    #- role: docker
+    - role: containers

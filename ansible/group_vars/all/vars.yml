@@ -1,16 +1,22 @@
 username: pedrojosawczuk
 
-guid: '1000'
-timezone: 'America/Sao_Paulo'
-
 list_of_packages:
   - neovim
   - htop
+  - neofetch
   - openssh-server
+
+shell: /usr/bin/bash
+
+pip_install_packages:
+  - name: docker
+
+guid: '1000'
+timezone: 'America/Sao_Paulo'
 
 traefik_network: 'proxy'
 
 config_folder: '/media/Archives/sawczukserver/selfhosted'
-home_folder: '/mnt/d/pedrojosawczuk'
+home_folder: '/home/pedrojosawczuk'
 home_folder_linux: '/media/Archives/sawczukserver'
 media_folder: '/media/Archives/media'
