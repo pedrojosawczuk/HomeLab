@@ -1,0 +1,3 @@
+.gitignore
+ansible/roles/podman/*
+ansible/containers/podman/*
