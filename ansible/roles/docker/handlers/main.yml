@@ -1,0 +1,6 @@
+---
+- name: Ensure Docker is Running and Enable on Boot
+  service:
+    name: docker
+    enabled: true
+    state: started

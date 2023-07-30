@@ -1,0 +1,49 @@
+- name: Update all packages (RedHat)
+  dnf:
+    name: '*'
+    state: latest
+
+- name: Install the latest Docker Packages (RedHat)
+  dnf:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+
+- name: Install Docker (RedHat)
+  dnf:
+    name: '{{ item }}'
+    enablerepo: 'https://download.docker.com/linux/fedora/docker-ce.repo'
+    state: latest
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-compose-plugin
+  notify: Ensure Docker is Running and Enable on Boot
+
+- name: Install python package manager
+  dnf:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - python3-pip
+    - python3-docker
+
+- name: Install python sdk
+  become_user: "{{ lookup('env','USER') }}"
+  pip:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - docker
+    - docker-compose
+
+- name: Install docker-compose from official github repo
+  get_url:
+    url: https://github.com/docker/compose/releases/download/v2.15.1/docker-compose-linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: 'u+x,g+x'
