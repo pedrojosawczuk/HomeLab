@@ -1,5 +1,5 @@
-- name: Update Packages (Debian-Based)
-  apt:
+- name: Update Packages (Fedora-Based)
+  dnf:
     update_cache: yes
     upgrade: yes
 

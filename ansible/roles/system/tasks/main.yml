@@ -1,0 +1,11 @@
+---
+- include_tasks: essential-RedHat.yml
+  when:
+    - ansible_os_family == 'RedHat'
+
+- include_tasks: essential-Debian.yml
+  when:
+    - ansible_os_family == 'Debian'
+
+- include_tasks: user.yml
+- include_tasks: ssh.yml

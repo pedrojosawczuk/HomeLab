@@ -1,0 +1,13 @@
+username: pedrojosawczuk
+
+password: changeme
+
+shell: /bin/bash
+
+ssh_port: 2022
+
+packages:
+  - neovim
+  - htop
+  - neofetch
+  - openssh-server
