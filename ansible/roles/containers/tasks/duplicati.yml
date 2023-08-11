@@ -8,6 +8,8 @@
       'PUID': '{{ guid }}'
       'PGID': '{{ guid }}'
       'TZ': '{{ timezone }}'
+      'DOCKER_MODS': '{{ themes }}:duplicati'
+      'TP_THEME': '{{ tptheme }}'
     volumes:
       - '{{ config_folder }}/duplicati:/config'
       - '{{ config_folder }}:/source/selfhosted'
