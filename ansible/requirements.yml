@@ -1,8 +1,0 @@
----
-collections:
-- name: community.docker
-#- name: community.podman
-
-#roles:
-#  - name: geerlingguy.docker
-#  - name: geerlingguy.pip

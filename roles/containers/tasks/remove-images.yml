@@ -8,14 +8,10 @@
     - docker.io/traefik:latest
     - ghcr.io/benphelps/homepage:latest
     - docker.io/portainer/portainer-ce:latest
-    - lscr.io/linuxserver/syncthing:latest
     - docker.io/vaultwarden/server:latest
-#    #- endlessh
-#    - traefik
-#    - homepage
-#    #- homer
-#    - portainer
-#    #- watchtower
-#    - syncthing
-#    - vaultwarden
-#    #- duplicati
+    - lscr.io/linuxserver/syncthing:latest
+    - lscr.io/linuxserver/grocy:latest
+    # - docker.io/b4bz/homer:latest
+    # - lscr.io/linuxserver/endlessh:latest
+    # - docker.io/containrrr/watchtower:latest
+    # - lscr.io/linuxserver/duplicati:2.0.6

@@ -4,8 +4,9 @@ guid: '1000'
 timezone: 'America/Sao_Paulo'
 
 themes: 'ghcr.io/gilbn/theme.park'
-tptheme: 'overseerr'
-#tptheme: 'organizr'
+tptheme: 'organizr'
+#tptheme: 'overseerr'
+#tptheme: 'dark'
 
 traefik_network: 'proxy'
 
