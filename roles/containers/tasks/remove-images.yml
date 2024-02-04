@@ -6,12 +6,13 @@
     state: absent
   loop:
     - docker.io/traefik:latest
-    - ghcr.io/benphelps/homepage:latest
+    - ghcr.io/gethomepage/homepage:latest
     - docker.io/portainer/portainer-ce:latest
     - docker.io/vaultwarden/server:latest
     - lscr.io/linuxserver/syncthing:latest
-    - lscr.io/linuxserver/grocy:latest
+    # - lscr.io/linuxserver/grocy:latest
     # - docker.io/b4bz/homer:latest
     # - lscr.io/linuxserver/endlessh:latest
     # - docker.io/containrrr/watchtower:latest
+    # - docker.io/rancher/rancher:latest
     # - lscr.io/linuxserver/duplicati:2.0.6

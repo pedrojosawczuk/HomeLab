@@ -3,7 +3,7 @@
 - name: Deploy Homepage
   community.docker.docker_container:
     name: homepage
-    image: 'ghcr.io/benphelps/homepage'
+    image: 'ghcr.io/gethomepage/homepage'
     env:
       'PUID': '{{ guid }}'
       'PGID': '{{ guid }}'
