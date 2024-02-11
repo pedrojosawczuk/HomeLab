@@ -3,17 +3,17 @@
 - name: Deploy Duplicati
   community.docker.docker_container:
     name: duplicati
-    image: 'lscr.io/linuxserver/duplicati:2.0.6'
+    image: 'lscr.io/linuxserver/duplicati:2.0.7'
     env:
-      'PUID': '{{ guid }}'
-      'PGID': '{{ guid }}'
+      'PUID': '0'
+      'PGID': '0'
       'TZ': '{{ timezone }}'
       'DOCKER_MODS': '{{ themes }}:duplicati'
       'TP_THEME': '{{ tptheme }}'
     volumes:
       - '{{ config_folder }}/duplicati:/config'
       - '{{ config_folder }}:/source/selfhosted'
-      - '{{ home_folder_linux }}/Nextcloud/pedrojosawczuk/files:/source/nextcloud'
+      #- '{{ home_folder_linux }}/Nextcloud/swczk/files:/source/nextcloud'
       - '{{ home_folder }}:/source/homefolder'
       - '{{ media_folder }}/backups:/backups'
     networks:
@@ -30,5 +30,5 @@
       traefik.http.routers.duplicati-secure.service: 'duplicati'
       traefik.http.services.duplicati.loadbalancer.server.port: '8200'
       traefik.docker.network: '{{ traefik_network }}'
-    state: started
+    state: present
     restart_policy: unless-stopped

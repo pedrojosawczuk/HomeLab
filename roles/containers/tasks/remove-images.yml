@@ -8,6 +8,7 @@
     - docker.io/traefik:latest
     - ghcr.io/gethomepage/homepage:latest
     - docker.io/portainer/portainer-ce:latest
+    - lscr.io/linuxserver/duplicati:2.0.7
     - docker.io/vaultwarden/server:latest
     - lscr.io/linuxserver/syncthing:latest
     # - lscr.io/linuxserver/grocy:latest
@@ -15,4 +16,3 @@
     # - lscr.io/linuxserver/endlessh:latest
     # - docker.io/containrrr/watchtower:latest
     # - docker.io/rancher/rancher:latest
-    # - lscr.io/linuxserver/duplicati:2.0.6

@@ -8,10 +8,10 @@
     - traefik
     - homepage
     - portainer
+    - duplicati
     - vaultwarden
     - syncthing
-    - grocy
+    # - grocy
     # - homer
     # - endlessh
     # - watchtower
-    # - duplicati

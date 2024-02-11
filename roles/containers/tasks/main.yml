@@ -14,13 +14,13 @@
 
 # Deploy Essential Containers (Docker)
 - include_tasks: homepage.yml
-- include_tasks: vaultwarden.yml
 - include_tasks: portainer.yml
+- include_tasks: duplicati.yml
+- include_tasks: vaultwarden.yml
 - include_tasks: syncthing.yml
-- include_tasks: grocy.yml
+# - include_tasks: grocy.yml
 # - include_tasks: endlessh.yml
 # - include_tasks: homer.yml
-# - include_tasks: duplicati.yml
 # - include_tasks: watchtower.yml
 
 # Start All Docker Containers
