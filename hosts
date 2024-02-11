@@ -3,4 +3,4 @@ localhost
 
 [homeserver:vars]
 ansible_connection=local
-ansible_user=pedrojosawczuk
+ansible_user=swczk

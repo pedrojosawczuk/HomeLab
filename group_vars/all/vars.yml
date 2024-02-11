@@ -1,4 +1,4 @@
-username: pedrojosawczuk
+username: swczk
 
 list_of_packages:
   - neovim
@@ -17,6 +17,6 @@ timezone: 'America/Sao_Paulo'
 traefik_network: 'proxy'
 
 config_folder: '/media/Archives/sawczukserver/selfhosted'
-home_folder: '/home/pedrojosawczuk'
+home_folder: '/home/swczk'
 home_folder_linux: '/media/Archives/sawczukserver'
 media_folder: '/media/Archives/media'
